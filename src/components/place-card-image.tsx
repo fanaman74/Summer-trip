@@ -38,5 +38,14 @@ export function PlaceCardImage({ slug, fallbackSrc, alt }: Props) {
     };
   }, [slug]);
 
-  return <Image src={src} alt={alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />;
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      className="object-cover"
+      sizes="(max-width: 768px) 100vw, 33vw"
+      unoptimized
+    />
+  );
 }

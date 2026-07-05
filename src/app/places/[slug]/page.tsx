@@ -40,7 +40,7 @@ export default async function PlacePage({
         <Card className="overflow-hidden">
           <div className="grid lg:grid-cols-[1.2fr_0.8fr]">
             <div className="relative min-h-[360px]">
-              <Image src={hero} alt={place.title} fill className="object-cover" sizes="100vw" />
+              <Image src={hero} alt={place.title} fill className="object-cover" sizes="100vw" unoptimized />
             </div>
             <div className="space-y-5 p-6 lg:p-8">
               <div className="flex flex-wrap gap-2">
@@ -157,7 +157,14 @@ export default async function PlacePage({
                 className="group overflow-hidden rounded-[24px] border border-[var(--sand-300)] bg-white"
               >
                 <div className="relative h-48">
-                  <Image src={image.src} alt={image.label} fill className="object-cover transition duration-500 group-hover:scale-105" sizes="(max-width: 1024px) 50vw, 25vw" />
+                  <Image
+                    src={image.src}
+                    alt={image.label}
+                    fill
+                    className="object-cover transition duration-500 group-hover:scale-105"
+                    sizes="(max-width: 1024px) 50vw, 25vw"
+                    unoptimized
+                  />
                 </div>
                 <div className="p-3 text-sm text-[var(--ink-700)]">{image.label}</div>
               </a>
