@@ -12,6 +12,7 @@ import {
   ShieldCheck,
   Star,
   SunMedium,
+  Users,
   Waves,
 } from "lucide-react";
 
@@ -421,6 +422,13 @@ export function AlgheroApp({
                 </button>
               );
             })}
+            <Link
+              href="/locals"
+              className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-sm font-semibold whitespace-nowrap text-[var(--ink-700)] transition hover:bg-white"
+            >
+              <Users className="h-4 w-4" />
+              Locals&apos; Picks
+            </Link>
         </div>
       </section>
 

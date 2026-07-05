@@ -90,3 +90,17 @@ export function getPlaceReviewHighlights(place: Place) {
     place.bookingRequired ? "This place needs advance booking or pre-checking before you go." : undefined,
   ].filter(Boolean) as string[];
 }
+
+// Places whose sourceLabel traces back to an actual insider or local guide,
+// as opposed to Fred's own planning notes or generic tourist review sites.
+const localSourceLabels = new Set([
+  "Aigua insider guide",
+  "Gambero Rosso guide",
+  "Local recommendation roundups",
+  "Local recommendation pattern",
+  "Food guides",
+]);
+
+export function isLocalRecommendation(place: Place) {
+  return localSourceLabels.has(place.sourceLabel);
+}
