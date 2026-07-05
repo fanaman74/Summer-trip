@@ -31,8 +31,6 @@ const MapView = dynamic(
   },
 );
 
-const dashboardSection = { id: "dashboard", label: "Dashboard", icon: Compass };
-
 const browseSections = [
   { id: "beaches", label: "Beaches", icon: Waves },
   { id: "things", label: "Things to Do", icon: SunMedium },
@@ -321,29 +319,22 @@ export function AlgheroApp({
         </section>
       ) : null}
 
-      <section className="sticky top-0 z-20 border-b border-[rgba(18,76,103,0.08)] bg-[rgba(255,248,239,0.88)] backdrop-blur">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-3 sm:px-8">
-          <div className="flex overflow-x-auto">
-            {(() => {
-              const Icon = dashboardSection.icon;
-              const active = activeSection === dashboardSection.id;
-
-              return (
-                <button
-                  onClick={() => setActiveSection(dashboardSection.id)}
-                  className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold whitespace-nowrap transition ${
-                    active
-                      ? "bg-[var(--sea-700)] text-white"
-                      : "bg-white/80 text-[var(--ink-700)]"
-                  }`}
-                >
-                  <Icon className="h-4 w-4" />
-                  {dashboardSection.label}
-                </button>
-              );
-            })()}
+      {!isDashboard ? (
+        <section className="border-b border-[rgba(18,76,103,0.08)] bg-[rgba(255,248,239,0.88)]">
+          <div className="mx-auto max-w-7xl px-4 py-4 sm:px-8">
+            <button
+              onClick={() => setActiveSection("dashboard")}
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--sea-700)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[var(--sea-800)]"
+            >
+              <Compass className="h-4 w-4" />
+              Back to dashboard
+            </button>
           </div>
-          <div className="flex gap-2 overflow-x-auto">
+        </section>
+      ) : null}
+
+      <section className="sticky top-0 z-20 border-b border-[rgba(18,76,103,0.08)] bg-[rgba(255,248,239,0.88)] backdrop-blur">
+        <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-4 py-3 sm:px-8">
             {browseSections.map((section) => {
               const Icon = section.icon;
               const active = activeSection === section.id;
@@ -362,7 +353,6 @@ export function AlgheroApp({
                 </button>
               );
             })}
-          </div>
         </div>
       </section>
 
