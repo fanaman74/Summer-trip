@@ -315,6 +315,77 @@ export function AlgheroApp({
               </div>
             </Card>
           </div>
+
+          <div className="grid gap-4 lg:grid-cols-3">
+            <Card className="p-5">
+              <div className="text-sm font-semibold text-[var(--sea-700)]">Everyone agrees</div>
+              <div className="mt-3 text-2xl font-semibold">
+                {
+                  rankedPlaces.filter(
+                    ({ placeVotes }) =>
+                      placeVotes.length >= 2 &&
+                      placeVotes.every((vote) => vote.vote !== "not_for_me"),
+                  ).length
+                }
+              </div>
+              <p className="mt-2 text-sm text-[var(--ink-700)]">
+                Picks without any hard no from the family.
+              </p>
+            </Card>
+            <Card className="p-5">
+              <div className="text-sm font-semibold text-[var(--coral-700)]">Split opinion</div>
+              <div className="mt-3 text-2xl font-semibold">
+                {
+                  rankedPlaces.filter(
+                    ({ placeVotes }) =>
+                      placeVotes.some((vote) => vote.vote === "must_do") &&
+                      placeVotes.some((vote) => vote.vote === "not_for_me"),
+                  ).length
+                }
+              </div>
+              <p className="mt-2 text-sm text-[var(--ink-700)]">
+                Places worth discussing before locking the itinerary.
+              </p>
+            </Card>
+            <Card className="p-5">
+              <div className="text-sm font-semibold text-[var(--sand-900)]">Needs booking</div>
+              <div className="mt-3 text-2xl font-semibold">
+                {initialPlaces.filter((place) => place.bookingRequired).length}
+              </div>
+              <p className="mt-2 text-sm text-[var(--ink-700)]">
+                Built-in warnings for La Pelosa, Neptune&apos;s Grotto, and reservation-led dinners.
+              </p>
+            </Card>
+          </div>
+
+          <div className="grid gap-4 lg:grid-cols-2">
+            {collections.map((collection) => (
+              <Card key={collection.id} className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--sea-700)]">
+                      Suggested route
+                    </div>
+                    <h3 className="mt-2 text-xl font-semibold">{collection.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-[var(--ink-700)]">
+                      {collection.description}
+                    </p>
+                  </div>
+                  <Badge tone="coral">{collection.placeSlugs.length} stops</Badge>
+                </div>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {collection.placeSlugs.map((slug) => {
+                    const place = initialPlaces.find((item) => item.slug === slug);
+                    return place ? (
+                      <Badge key={slug} tone={place.badgeTone ?? "sand"}>
+                        {place.title}
+                      </Badge>
+                    ) : null;
+                  })}
+                </div>
+              </Card>
+            ))}
+          </div>
         </div>
         </section>
       ) : null}
@@ -415,81 +486,6 @@ export function AlgheroApp({
             </Card>
           </div>
         ) : null}
-
-        {activeSection === "dashboard" && (
-          <div className="mb-8 grid gap-4 lg:grid-cols-3">
-            <Card className="p-5">
-              <div className="text-sm font-semibold text-[var(--sea-700)]">Everyone agrees</div>
-              <div className="mt-3 text-2xl font-semibold">
-                {
-                  rankedPlaces.filter(
-                    ({ placeVotes }) =>
-                      placeVotes.length >= 2 &&
-                      placeVotes.every((vote) => vote.vote !== "not_for_me"),
-                  ).length
-                }
-              </div>
-              <p className="mt-2 text-sm text-[var(--ink-700)]">
-                Picks without any hard no from the family.
-              </p>
-            </Card>
-            <Card className="p-5">
-              <div className="text-sm font-semibold text-[var(--coral-700)]">Split opinion</div>
-              <div className="mt-3 text-2xl font-semibold">
-                {
-                  rankedPlaces.filter(
-                    ({ placeVotes }) =>
-                      placeVotes.some((vote) => vote.vote === "must_do") &&
-                      placeVotes.some((vote) => vote.vote === "not_for_me"),
-                  ).length
-                }
-              </div>
-              <p className="mt-2 text-sm text-[var(--ink-700)]">
-                Places worth discussing before locking the itinerary.
-              </p>
-            </Card>
-            <Card className="p-5">
-              <div className="text-sm font-semibold text-[var(--sand-900)]">Needs booking</div>
-              <div className="mt-3 text-2xl font-semibold">
-                {initialPlaces.filter((place) => place.bookingRequired).length}
-              </div>
-              <p className="mt-2 text-sm text-[var(--ink-700)]">
-                Built-in warnings for La Pelosa, Neptune&apos;s Grotto, and reservation-led dinners.
-              </p>
-            </Card>
-          </div>
-        )}
-
-        {activeSection === "dashboard" && (
-          <div className="mb-8 grid gap-4 lg:grid-cols-2">
-            {collections.map((collection) => (
-              <Card key={collection.id} className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--sea-700)]">
-                      Suggested route
-                    </div>
-                    <h3 className="mt-2 text-xl font-semibold">{collection.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-[var(--ink-700)]">
-                      {collection.description}
-                    </p>
-                  </div>
-                  <Badge tone="coral">{collection.placeSlugs.length} stops</Badge>
-                </div>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {collection.placeSlugs.map((slug) => {
-                    const place = initialPlaces.find((item) => item.slug === slug);
-                    return place ? (
-                      <Badge key={slug} tone={place.badgeTone ?? "sand"}>
-                        {place.title}
-                      </Badge>
-                    ) : null;
-                  })}
-                </div>
-              </Card>
-            ))}
-          </div>
-        )}
 
         {(activeSection === "dashboard" ||
           activeSection === "beaches" ||
