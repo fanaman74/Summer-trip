@@ -168,6 +168,14 @@ export function AlgheroApp({
 
   const topPicks = rankedPlaces.slice(0, 5);
   const weatherPanel = getWeatherSuggestions(weatherMode);
+  const isDashboard = activeSection === "dashboard";
+  const showBrowseControls =
+    activeSection === "beaches" ||
+    activeSection === "things" ||
+    activeSection === "restaurants" ||
+    activeSection === "family" ||
+    activeSection === "map" ||
+    activeSection === "itinerary";
 
   function updateVote(placeId: string, vote: VoteValue) {
     const existing = votes.find(
@@ -190,7 +198,8 @@ export function AlgheroApp({
 
   return (
     <main className="min-h-screen bg-[var(--sand-100)] text-[var(--ink-900)]">
-      <section className="relative overflow-hidden border-b border-white/50 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.9),_rgba(255,247,235,0.72)_45%,_rgba(16,100,131,0.18)_100%)]">
+      {isDashboard ? (
+        <section className="relative overflow-hidden border-b border-white/50 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.9),_rgba(255,247,235,0.72)_45%,_rgba(16,100,131,0.18)_100%)]">
         <div className="mx-auto flex max-w-7xl flex-col gap-10 px-5 py-6 sm:px-8 lg:px-10">
           <div className="flex items-center justify-between">
             <div>
@@ -308,7 +317,8 @@ export function AlgheroApp({
             </Card>
           </div>
         </div>
-      </section>
+        </section>
+      ) : null}
 
       <section className="sticky top-0 z-20 border-b border-[rgba(18,76,103,0.08)] bg-[rgba(255,248,239,0.88)] backdrop-blur">
         <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-4 py-3 sm:px-8">
@@ -334,7 +344,66 @@ export function AlgheroApp({
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-8 sm:px-8 lg:px-10">
-        {(activeSection === "dashboard" || activeSection === "family") && (
+        {showBrowseControls ? (
+          <div className="mb-8 grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+            <Card className="p-5 sm:p-6">
+              <div className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--sea-700)]">
+                Family members
+              </div>
+              <div className="mt-4 text-2xl font-semibold text-[var(--ink-900)]">
+                Vote as
+              </div>
+              <div className="mt-5 flex flex-wrap gap-3">
+                {familyMembers.map((member) => (
+                  <button
+                    key={member.id}
+                    onClick={() => setSelectedMember(member.id)}
+                    className={`rounded-full border px-5 py-3 text-sm font-medium transition sm:text-base ${
+                      selectedMember === member.id
+                        ? "border-[var(--sea-700)] bg-[var(--sea-50)] text-[var(--sea-800)]"
+                        : "border-[var(--sand-300)] bg-white text-[var(--ink-800)]"
+                    }`}
+                  >
+                    {member.emoji} {member.name}
+                  </button>
+                ))}
+              </div>
+            </Card>
+            <Card className="p-6">
+              <div className="text-sm font-semibold uppercase tracking-[0.18em] text-[var(--sea-700)]">
+                Shared filters
+              </div>
+              <div className="mt-4 space-y-4">
+                <div className="relative">
+                  <Search className="pointer-events-none absolute left-4 top-3.5 h-4 w-4 text-[var(--ink-500)]" />
+                  <Input
+                    value={search}
+                    onChange={(event) => setSearch(event.target.value)}
+                    placeholder="Search beaches, local tips, tags, and routes"
+                    className="pl-10"
+                  />
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {allTags.slice(0, 14).map((tag) => (
+                    <button
+                      key={tag}
+                      onClick={() => setSelectedTag(tag)}
+                      className={`rounded-full px-3 py-2 text-xs font-semibold transition ${
+                        selectedTag === tag
+                          ? "bg-[var(--coral-500)] text-white"
+                          : "bg-[var(--sand-200)] text-[var(--ink-800)]"
+                      }`}
+                    >
+                      {tag}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </Card>
+          </div>
+        ) : null}
+
+        {activeSection === "dashboard" && (
           <div className="mb-8 grid gap-4 lg:grid-cols-3">
             <Card className="p-5">
               <div className="text-sm font-semibold text-[var(--sea-700)]">Everyone agrees</div>
