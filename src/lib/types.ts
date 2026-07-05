@@ -46,6 +46,12 @@ export type Place = {
   badgeTone?: "sea" | "sand" | "coral" | "leaf";
 };
 
+export type PlaceSource = {
+  label: string;
+  url: string;
+  kind: "official" | "guide" | "reviews" | "planning";
+};
+
 export type VoteRecord = {
   userId: string;
   placeId: string;

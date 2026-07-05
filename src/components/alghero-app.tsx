@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import {
   CalendarRange,
@@ -18,6 +19,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { PlaceCardImage } from "@/components/place-card-image";
 import {
   familyMembers,
   initialVotes,
@@ -486,11 +488,12 @@ export function AlgheroApp({
                 <div className="relative h-56">
                   <Image
                     src={place.imageUrl}
-                    alt={place.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    alt=""
+                    width={1}
+                    height={1}
+                    className="hidden"
                   />
+                  <PlaceCardImage slug={place.slug} fallbackSrc={place.imageUrl} alt={place.title} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
                   <div className="absolute left-4 right-4 top-4 flex flex-wrap gap-2">
                     <Badge tone={place.badgeTone ?? "sand"}>{place.category}</Badge>
@@ -580,6 +583,12 @@ export function AlgheroApp({
                     </div>
                   ) : null}
                   <div className="text-xs text-[var(--ink-500)]">Source: {place.sourceLabel}</div>
+                  <Link
+                    href={`/places/${place.slug}`}
+                    className="inline-flex items-center rounded-full bg-[var(--sea-700)] px-4 py-2 text-sm font-semibold text-white"
+                  >
+                    Collected guide
+                  </Link>
                 </div>
               </Card>
             ))}
