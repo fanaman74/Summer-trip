@@ -221,21 +221,16 @@ export function AlgheroApp({
               Family members
             </div>
             <div className="mt-4 text-2xl font-semibold text-[var(--ink-900)]">
-              Vote as
+              Everyone votes on each card
             </div>
             <div className="mt-5 flex flex-wrap gap-3">
               {familyMembers.map((member) => (
-                <button
+                <div
                   key={member.id}
-                  onClick={() => setSelectedMember(member.id)}
-                  className={`rounded-full border px-5 py-3 text-sm font-medium transition sm:text-base ${
-                    selectedMember === member.id
-                      ? "border-[var(--sea-700)] bg-[var(--sea-50)] text-[var(--sea-800)]"
-                      : "border-[var(--sand-300)] bg-white text-[var(--ink-800)]"
-                  }`}
+                  className="rounded-full border border-[var(--sand-300)] bg-white px-5 py-3 text-sm font-medium text-[var(--ink-800)] sm:text-base"
                 >
                   {member.emoji} {member.name}
-                </button>
+                </div>
               ))}
             </div>
           </Card>
