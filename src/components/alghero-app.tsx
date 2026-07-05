@@ -116,6 +116,7 @@ export function AlgheroApp({
   collections: Collection[];
 }) {
   const [activeSection, setActiveSection] = useState("dashboard");
+  const [familyBoardName, setFamilyBoardName] = useState("Fred's family votes");
   const [weatherMode, setWeatherMode] = useState("calm");
   const [selectedMember, setSelectedMember] = useState(familyMembers[0].id);
   const [selectedTag, setSelectedTag] = useState("All");
@@ -195,7 +196,7 @@ export function AlgheroApp({
           <div className="flex items-center justify-between">
             <div>
               <div className="text-sm font-semibold uppercase tracking-[0.24em] text-[var(--sea-700)]">
-                Fred&apos;s family votes
+                {familyBoardName}
               </div>
               <h1 className="mt-3 max-w-3xl font-serif text-4xl leading-tight sm:text-5xl">
                 Pick your Alghero adventure like a shared planning board.
@@ -213,6 +214,35 @@ export function AlgheroApp({
             <Card className="overflow-hidden bg-[linear-gradient(135deg,rgba(11,93,125,0.96),rgba(7,65,88,0.92))] text-white">
               <div className="grid gap-6 p-6 md:grid-cols-[1.05fr_0.95fr] md:p-8">
                 <div>
+                  <div className="rounded-[24px] border border-white/15 bg-white/10 p-4">
+                    <div className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
+                      Family board name
+                    </div>
+                    <div className="mt-3">
+                      <Input
+                        value={familyBoardName}
+                        onChange={(event) => setFamilyBoardName(event.target.value)}
+                        placeholder="Choose your planner name"
+                        className="border-white/15 bg-white/90 text-[var(--ink-900)]"
+                      />
+                    </div>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {[
+                        "Fred's family votes",
+                        "Team Alghero",
+                        "The Sardinia crew",
+                      ].map((name) => (
+                        <Button
+                          key={name}
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setFamilyBoardName(name)}
+                        >
+                          {name}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
                   <Badge tone="sand">Today&apos;s rhythm</Badge>
                   <h2 className="mt-4 text-2xl font-semibold">{weatherPanel.title}</h2>
                   <p className="mt-3 max-w-lg text-sm leading-7 text-white/80">
