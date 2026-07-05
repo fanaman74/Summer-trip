@@ -119,7 +119,7 @@ export async function getPlaceMedia(slug: string): Promise<PlaceMedia> {
   const commonsUrl =
     `https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search` +
     `&gsrsearch=${encodeURIComponent(commonsQuery)}` +
-    `&gsrnamespace=6&gsrlimit=8&prop=imageinfo&iiprop=url&iiurlwidth=1600&origin=*`;
+    `&gsrnamespace=6&gsrlimit=8&prop=imageinfo&iiprop=url|size&iiurlwidth=1600&origin=*`;
 
   const commonsData = await fetchJson<{
     query?: {
@@ -127,20 +127,32 @@ export async function getPlaceMedia(slug: string): Promise<PlaceMedia> {
         string,
         {
           title: string;
-          imageinfo?: Array<{ url?: string; thumburl?: string }>;
+          imageinfo?: Array<{ url?: string; thumburl?: string; width?: number; height?: number }>;
         }
       >;
     };
   }>(commonsUrl);
+
+  // Commons search sometimes surfaces tiny/legacy uploads (e.g. 75x75px)
+  // that still score well on title match; excluding them keeps hero and
+  // gallery images from being stretched blurry.
+  const MIN_DIMENSION = 800;
 
   const pages = Object.values(commonsData?.query?.pages ?? {})
     .map((page) => ({
       title: page.title.replace(/^File:/, ""),
       imageUrl: page.imageinfo?.[0]?.url ?? page.imageinfo?.[0]?.thumburl ?? "",
       pageUrl: `https://commons.wikimedia.org/wiki/${encodeURIComponent(page.title.replaceAll(" ", "_"))}`,
+      width: page.imageinfo?.[0]?.width ?? 0,
+      height: page.imageinfo?.[0]?.height ?? 0,
       score: titleScore(place.title, page.title) + titleScore(commonsQuery, page.title),
     }))
-    .filter((page) => page.imageUrl && page.score >= 2);
+    .filter(
+      (page) =>
+        page.imageUrl &&
+        page.score >= 2 &&
+        Math.max(page.width, page.height) >= MIN_DIMENSION,
+    );
 
   const sortedPages = [...pages].sort((a, b) => b.score - a.score);
   const bestPage = sortedPages[0];
