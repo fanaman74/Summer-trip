@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "collect:tripadvisor": "node --env-file=.env.local scripts/collect-tripadvisor.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.0",

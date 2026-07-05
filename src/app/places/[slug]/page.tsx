@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, MapPinned } from "lucide-react";
+import { ArrowLeft, ExternalLink, MapPinned, Star } from "lucide-react";
 import { notFound } from "next/navigation";
 
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { getPlaceReviewHighlights, getPlaceSources } from "@/lib/place-content";
 import { getPlaceMedia } from "@/lib/place-media.server";
+import { getTripAdvisorInfo } from "@/lib/tripadvisor";
 import { places } from "@/lib/seed/alghero-places";
 
 export default async function PlacePage({
@@ -24,7 +25,8 @@ export default async function PlacePage({
   const media = await getPlaceMedia(slug);
   const highlights = getPlaceReviewHighlights(place);
   const sources = getPlaceSources(place);
-  const hero = media.heroImageUrl ?? place.imageUrl;
+  const tripAdvisor = getTripAdvisorInfo(slug);
+  const hero = media.heroImageUrl ?? tripAdvisor?.imageUrl ?? place.imageUrl;
 
   return (
     <main className="min-h-screen bg-[var(--sand-100)] px-4 py-8 text-[var(--ink-900)] sm:px-8">
@@ -51,6 +53,27 @@ export default async function PlacePage({
                 <h1 className="font-serif text-4xl leading-tight">{place.title}</h1>
                 <p className="mt-2 text-lg text-[var(--ink-600)]">{place.area}</p>
               </div>
+              {tripAdvisor?.rating ? (
+                <a
+                  href={tripAdvisor.webUrl ?? undefined}
+                  target={tripAdvisor.webUrl ? "_blank" : undefined}
+                  rel={tripAdvisor.webUrl ? "noreferrer" : undefined}
+                  className="inline-flex flex-wrap items-center gap-2 rounded-full bg-[var(--sand-150)] px-4 py-2 text-sm text-[var(--ink-800)]"
+                >
+                  <Star className="h-4 w-4 fill-[var(--coral-700,#e0685c)] text-[var(--coral-700,#e0685c)]" />
+                  <span className="font-semibold">{tripAdvisor.rating.toFixed(1)}</span>
+                  {tripAdvisor.numberOfReviews ? (
+                    <span className="text-[var(--ink-600)]">
+                      {tripAdvisor.numberOfReviews.toLocaleString("en-GB")} Tripadvisor reviews
+                    </span>
+                  ) : (
+                    <span className="text-[var(--ink-600)]">on Tripadvisor</span>
+                  )}
+                  {tripAdvisor.rankingString ? (
+                    <span className="text-xs text-[var(--ink-500)]">· {tripAdvisor.rankingString}</span>
+                  ) : null}
+                </a>
+              ) : null}
               <p className="text-base leading-7 text-[var(--ink-700)]">{place.longDescription}</p>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
@@ -97,6 +120,20 @@ export default async function PlacePage({
                 </div>
               ))}
             </div>
+            {tripAdvisor && tripAdvisor.reviewTags.length > 0 ? (
+              <div className="mt-4">
+                <div className="mb-2 text-sm font-semibold text-[var(--ink-900)]">
+                  Tripadvisor reviewers mention
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {tripAdvisor.reviewTags.map((tag) => (
+                    <Badge key={tag} tone="sand">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            ) : null}
             <div className="mt-6 rounded-[22px] border border-[var(--sand-300)] p-4 text-sm leading-6 text-[var(--ink-700)]">
               <div className="mb-2 font-semibold text-[var(--ink-900)]">Parking and planning</div>
               <div>{place.parkingNotes ?? "Check parking early in high season for the best setup."}</div>

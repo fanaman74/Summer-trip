@@ -1,3 +1,4 @@
+import { getTripAdvisorInfo } from "@/lib/tripadvisor";
 import { Place, PlaceSource } from "@/lib/types";
 
 const attractionReviewsUrl =
@@ -30,6 +31,15 @@ export function getPlaceSources(place: Place): PlaceSource[] {
     url: "#",
     kind: "planning",
   });
+
+  const tripAdvisor = getTripAdvisorInfo(place.slug);
+  if (tripAdvisor?.webUrl) {
+    sources.push({
+      label: `Tripadvisor: ${tripAdvisor.name}`,
+      url: tripAdvisor.webUrl,
+      kind: "reviews",
+    });
+  }
 
   if (place.category === "restaurant") {
     sources.push({ label: "Tripadvisor Alghero restaurants", url: restaurantReviewsUrl, kind: "reviews" });

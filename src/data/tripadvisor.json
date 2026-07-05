@@ -1,0 +1,436 @@
+{
+  "generatedAt": "2026-07-05T16:13:28.903Z",
+  "source": "TripAdvisor via Apify maxcopell/tripadvisor",
+  "places": {
+    "lido-di-alghero": {
+      "name": "Lido San Giovanni",
+      "rating": 2.8,
+      "numberOfReviews": 193,
+      "rankingString": "#87 of 102 things to do in Alghero",
+      "priceRange": null,
+      "webUrl": "https://www.tripadvisor.com/Attraction_Review-g187880-d4741626-Reviews-Lido_San_Giovanni-Alghero_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-o/0c/1f/e1/98/20160720-130104-largejpg.jpg",
+      "type": "ATTRACTION",
+      "subcategories": [
+        "Nature & Parks",
+        "Outdoor Activities"
+      ],
+      "reviewTags": [],
+      "matchedQuery": "dataset:pt47ywNmP7K2wSrJO"
+    },
+    "le-bombarde": {
+      "name": "J&B Le Bombarde Beach Club",
+      "rating": 3.8,
+      "numberOfReviews": 423,
+      "rankingString": "#20 of 102 things to do in Alghero",
+      "priceRange": null,
+      "webUrl": "https://www.tripadvisor.com/Attraction_Review-g187880-d6996268-Reviews-J_B_Le_Bombarde_Beach_Club-Alghero_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-o/10/5b/f8/89/20170815-181216-largejpg.jpg",
+      "type": "ATTRACTION",
+      "subcategories": [
+        "Outdoor Activities"
+      ],
+      "reviewTags": [
+        "carne"
+      ],
+      "matchedQuery": "dataset:pt47ywNmP7K2wSrJO"
+    },
+    "lazzaretto": {
+      "name": "Torre del Lazzaretto",
+      "rating": 4.5,
+      "numberOfReviews": 11,
+      "rankingString": "#40 of 102 things to do in Alghero",
+      "priceRange": null,
+      "webUrl": "https://www.tripadvisor.com/Attraction_Review-g187880-d12941200-Reviews-Torre_del_Lazzaretto-Alghero_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-o/10/d5/0b/38/vista.jpg",
+      "type": "ATTRACTION",
+      "subcategories": [
+        "Sights & Landmarks"
+      ],
+      "reviewTags": [],
+      "matchedQuery": "dataset:Kd9pPu4DTt5cBouf2"
+    },
+    "mugoni-beach": {
+      "name": "Spiaggia Mugoni",
+      "rating": 4.3,
+      "numberOfReviews": 1950,
+      "rankingString": "#8 of 102 things to do in Alghero",
+      "priceRange": null,
+      "webUrl": "https://www.tripadvisor.com/Attraction_Review-g187880-d4700808-Reviews-Spiaggia_Mugoni-Alghero_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-o/0c/7b/29/7c/la-vista-del-golfo-con.jpg",
+      "type": "ATTRACTION",
+      "subcategories": [
+        "Nature & Parks",
+        "Outdoor Activities"
+      ],
+      "reviewTags": [
+        "nice beach",
+        "beautiful water",
+        "beautiful bay",
+        "le"
+      ],
+      "matchedQuery": "Spiaggia di Mugoni Alghero"
+    },
+    "le-saline": {
+      "name": "Kitezone Le Saline - Windsurfing Center Stintino",
+      "rating": 3.9,
+      "numberOfReviews": 64,
+      "rankingString": "#33 of 56 Boat Tours & Water Sports in Stintino",
+      "priceRange": null,
+      "webUrl": "https://www.tripadvisor.com/Attraction_Review-g608925-d7362158-Reviews-Kitezone_Le_Saline_Windsurfing_Center_Stintino-Stintino_Province_of_Sassari_Sardi.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-m/1280/1b/30/ec/08/kitebar-le-saline.jpg",
+      "type": "ATTRACTION",
+      "subcategories": [
+        "Tours",
+        "Boat Tours & Water Sports",
+        "Outdoor Activities"
+      ],
+      "reviewTags": [],
+      "matchedQuery": "dataset:4VFALs8bGxcGSaccU"
+    },
+    "spiaggia-di-poglina": {
+      "name": "Chiesa di Nostra Signora della Speranza",
+      "rating": null,
+      "numberOfReviews": 0,
+      "rankingString": null,
+      "priceRange": null,
+      "webUrl": "https://www.tripadvisor.com/Attraction_Review-g187880-d23539626-Reviews-Chiesa_di_Nostra_Signora_della_Speranza-Alghero_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-m/1280/13/d1/95/4f/alghero-km-7-sulla-litoranea.jpg",
+      "type": "ATTRACTION",
+      "subcategories": [
+        "Sights & Landmarks"
+      ],
+      "reviewTags": [],
+      "matchedQuery": "dataset:Kd9pPu4DTt5cBouf2"
+    },
+    "la-pelosa": {
+      "name": "La Pelosa Beach",
+      "rating": 4.3,
+      "numberOfReviews": 11462,
+      "rankingString": "#5 of 22 things to do in Stintino",
+      "priceRange": null,
+      "webUrl": "https://www.tripadvisor.com/Attraction_Review-g608925-d614634-Reviews-La_Pelosa_Beach-Stintino_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-o/0c/ae/09/35/acqua-cristallina-e-colori.jpg",
+      "type": "ATTRACTION",
+      "subcategories": [
+        "Nature & Parks",
+        "Outdoor Activities"
+      ],
+      "reviewTags": [
+        "la pelosa",
+        "per hour",
+        "crystal clear water",
+        "early in the morning",
+        "on the rocks",
+        "pelosa beach"
+      ],
+      "matchedQuery": "La Pelosa Stintino"
+    },
+    "capo-caccia-belvedere": {
+      "name": "Area Marina Protetta - Capo Caccia / Isola Piana",
+      "rating": 4.5,
+      "numberOfReviews": 8,
+      "rankingString": "#2 of 4 things to do in Tramariglio",
+      "priceRange": null,
+      "webUrl": "https://www.tripadvisor.com/Attraction_Review-g12072180-d12965854-Reviews-Area_Marina_Protetta_Capo_Caccia_Isola_Piana-Tramariglio_Alghero_Province_of_S.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-o/10/f2/57/d7/vista.jpg",
+      "type": "ATTRACTION",
+      "subcategories": [
+        "Nature & Parks"
+      ],
+      "reviewTags": [],
+      "matchedQuery": "dataset:pt47ywNmP7K2wSrJO"
+    },
+    "neptunes-grotto": {
+      "name": "Grotte Di Nettuno",
+      "rating": 2,
+      "numberOfReviews": 1,
+      "rankingString": "#85 of 102 things to do in Alghero",
+      "priceRange": null,
+      "webUrl": "https://www.tripadvisor.com/Attraction_Review-g187880-d32729989-Reviews-Grotte_Di_Nettuno-Alghero_Province_of_Sassari_Sardinia.html",
+      "imageUrl": null,
+      "type": "ATTRACTION",
+      "subcategories": [
+        "Sights & Landmarks",
+        "Nature & Parks"
+      ],
+      "reviewTags": [],
+      "matchedQuery": "dataset:pt47ywNmP7K2wSrJO"
+    },
+    "stintino-boat-excursion": {
+      "name": "Asinara Charter",
+      "rating": 5,
+      "numberOfReviews": 1081,
+      "rankingString": "#1 of 64 Tours in Stintino",
+      "priceRange": null,
+      "webUrl": "https://www.tripadvisor.com/Attraction_Review-g608925-d14052137-Reviews-Asinara_Charter-Stintino_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-m/1280/1b/79/e7/f1/kalliste-alla-pelosa.jpg",
+      "type": "ATTRACTION",
+      "subcategories": [
+        "Tours",
+        "Boat Tours & Water Sports",
+        "Outdoor Activities"
+      ],
+      "reviewTags": [
+        "mussels",
+        "day trip",
+        "federico",
+        "skipper",
+        "spots",
+        "board"
+      ],
+      "matchedQuery": "dataset:8XGb35niYiyWkrfU5"
+    },
+    "nuraghe-palmavera": {
+      "name": "Villaggio Nuragico Palmavera",
+      "rating": 4.1,
+      "numberOfReviews": 639,
+      "rankingString": "#7 of 102 things to do in Alghero",
+      "priceRange": null,
+      "webUrl": "https://www.tripadvisor.com/Attraction_Review-g187880-d247448-Reviews-Villaggio_Nuragico_Palmavera-Alghero_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-m/1280/13/ef/e7/0b/nuraghe.jpg",
+      "type": "ATTRACTION",
+      "subcategories": [
+        "Sights & Landmarks"
+      ],
+      "reviewTags": [],
+      "matchedQuery": "Nuraghe Palmavera Alghero"
+    },
+    "punta-giglio-porto-conte": {
+      "name": "Punta Giglio",
+      "rating": 4,
+      "numberOfReviews": 44,
+      "rankingString": "#36 of 102 things to do in Alghero",
+      "priceRange": null,
+      "webUrl": "https://www.tripadvisor.com/Attraction_Review-g187880-d12848957-Reviews-Punta_Giglio-Alghero_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-o/10/d5/01/3f/vista.jpg",
+      "type": "ATTRACTION",
+      "subcategories": [
+        "Nature & Parks"
+      ],
+      "reviewTags": [
+        "trail"
+      ],
+      "matchedQuery": "dataset:pt47ywNmP7K2wSrJO"
+    },
+    "il-chiosco-le-bombarde": {
+      "name": "Il Chiosco",
+      "rating": 3.2,
+      "numberOfReviews": 5,
+      "rankingString": "#20 of 25 Nightlife in Alghero",
+      "priceRange": null,
+      "webUrl": "https://www.tripadvisor.com/Attraction_Review-g187880-d25450202-Reviews-Il_Chiosco-Alghero_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-m/1280/28/fb/2b/fe/il-chiosco-alghero.jpg",
+      "type": "ATTRACTION",
+      "subcategories": [
+        "Nightlife"
+      ],
+      "reviewTags": [],
+      "matchedQuery": "dataset:Kd9pPu4DTt5cBouf2"
+    },
+    "bar-ristorante-da-bruno": {
+      "name": "Ristorante da Bruno",
+      "rating": 3.7,
+      "numberOfReviews": 337,
+      "rankingString": "#94 of 361 Restaurants in Alghero",
+      "priceRange": "$$ - $$$",
+      "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g187880-d2251356-Reviews-Ristorante_da_Bruno-Alghero_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-m/1280/2a/c4/85/36/culurgiones-alla-casalinga.jpg",
+      "type": "RESTAURANT",
+      "subcategories": [
+        "Sit down"
+      ],
+      "reviewTags": [],
+      "matchedQuery": "dataset:pt47ywNmP7K2wSrJO"
+    },
+    "le-ninfe": {
+      "name": "Le Ninfe",
+      "rating": 4.4,
+      "numberOfReviews": 1982,
+      "rankingString": "#25 of 361 Restaurants in Alghero",
+      "priceRange": "$$ - $$$",
+      "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g187880-d4541220-Reviews-Le_Ninfe-Alghero_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-m/1280/23/38/3e/07/aprile-2022.jpg",
+      "type": "RESTAURANT",
+      "subcategories": [
+        "Sit down"
+      ],
+      "reviewTags": [
+        "spaghetti",
+        "cheesecake",
+        "mussels",
+        "home made",
+        "great lunch",
+        "wonderful food"
+      ],
+      "matchedQuery": "dataset:pt47ywNmP7K2wSrJO"
+    },
+    "il-baretto-di-porto-ferro": {
+      "name": "Il Baretto",
+      "rating": 4.4,
+      "numberOfReviews": 7,
+      "rankingString": "#29 of 50 Restaurants in Stintino",
+      "priceRange": null,
+      "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g608925-d26260161-Reviews-Il_Baretto-Stintino_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-m/1280/2d/33/b8/7a/caption.jpg",
+      "type": "RESTAURANT",
+      "subcategories": [],
+      "reviewTags": [],
+      "matchedQuery": "dataset:8XGb35niYiyWkrfU5"
+    },
+    "lido-hermeu-kiosk": {
+      "name": "Hermeu",
+      "rating": 3.7,
+      "numberOfReviews": 57,
+      "rankingString": "#67 of 102 things to do in Alghero",
+      "priceRange": null,
+      "webUrl": "https://www.tripadvisor.com/Attraction_Review-g187880-d4542713-Reviews-Hermeu-Alghero_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-o/0c/c0/09/87/photo0jpg.jpg",
+      "type": "ATTRACTION",
+      "subcategories": [
+        "Nature & Parks",
+        "Outdoor Activities"
+      ],
+      "reviewTags": [],
+      "matchedQuery": "dataset:pt47ywNmP7K2wSrJO"
+    },
+    "al-tuguri": {
+      "name": "Al Tuguri Ristorante Storico Alghero",
+      "rating": 4.2,
+      "numberOfReviews": 724,
+      "rankingString": "#42 of 361 Restaurants in Alghero",
+      "priceRange": "$$$$",
+      "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g187880-d1075459-Reviews-Al_Tuguri_Ristorante_Storico_Alghero-Alghero_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-m/1280/2d/11/e3/33/ristorante-alghero-al.jpg",
+      "type": "RESTAURANT",
+      "subcategories": [
+        "Sit down"
+      ],
+      "reviewTags": [
+        "tasting menu",
+        "bread",
+        "euro"
+      ],
+      "matchedQuery": "dataset:pt47ywNmP7K2wSrJO"
+    },
+    "lo-romani": {
+      "name": "Trattoria Lo Romani - Da Vittoria e Gigi",
+      "rating": 4.4,
+      "numberOfReviews": 2103,
+      "rankingString": "#31 of 361 Restaurants in Alghero",
+      "priceRange": "$$ - $$$",
+      "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g187880-d4035690-Reviews-Trattoria_Lo_Romani_Da_Vittoria_e_Gigi-Alghero_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-o/03/ac/4b/f4/trattoria-lo-romani-da.jpg",
+      "type": "RESTAURANT",
+      "subcategories": [
+        "Sit down"
+      ],
+      "reviewTags": [
+        "suckling pig",
+        "seafood risotto",
+        "sardo",
+        "sea bream",
+        "an amazing meal",
+        "visited this restaurant"
+      ],
+      "matchedQuery": "dataset:pt47ywNmP7K2wSrJO"
+    },
+    "ristorante-mabrouk": {
+      "name": "Ristorante Mabrouk",
+      "rating": 4.3,
+      "numberOfReviews": 2102,
+      "rankingString": "#45 of 361 Restaurants in Alghero",
+      "priceRange": "$$ - $$$",
+      "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g187880-d1130523-Reviews-Ristorante_Mabrouk-Alghero_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-o/10/8e/43/e0/photo7jpg.jpg",
+      "type": "RESTAURANT",
+      "subcategories": [
+        "Sit down"
+      ],
+      "reviewTags": [
+        "pasta dishes",
+        "lobster",
+        "sea bass",
+        "prawns",
+        "potatoes",
+        "set menu"
+      ],
+      "matchedQuery": "dataset:pt47ywNmP7K2wSrJO"
+    },
+    "trattoria-caragol": {
+      "name": "Trattoria Caragol di Antonio & Maurizia",
+      "rating": 4.3,
+      "numberOfReviews": 1011,
+      "rankingString": "#37 of 361 Restaurants in Alghero",
+      "priceRange": "$$ - $$$",
+      "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g187880-d4356062-Reviews-Trattoria_Caragol_di_Antonio_Maurizia-Alghero_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-w/16/9f/f8/54/trattoria-caragol.jpg",
+      "type": "RESTAURANT",
+      "subcategories": [
+        "Sit down"
+      ],
+      "reviewTags": [
+        "pasta",
+        "delicious dinner",
+        "nice atmosphere"
+      ],
+      "matchedQuery": "dataset:pt47ywNmP7K2wSrJO"
+    },
+    "il-milese": {
+      "name": "Bar Focacceria Milese",
+      "rating": 4.2,
+      "numberOfReviews": 2913,
+      "rankingString": "#48 of 361 Restaurants in Alghero",
+      "priceRange": "$",
+      "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g187880-d3566763-Reviews-Bar_Focacceria_Milese-Alghero_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-m/1280/18/c4/05/c9/photo0jpg.jpg",
+      "type": "RESTAURANT",
+      "subcategories": [
+        "Sit down"
+      ],
+      "reviewTags": [
+        "lunch",
+        "sandwich",
+        "focaccia",
+        "take away",
+        "fresh ingredients",
+        "local beer"
+      ],
+      "matchedQuery": "dataset:pt47ywNmP7K2wSrJO"
+    },
+    "licchita-pizzeria-moderna": {
+      "name": "Licchita Pizzeria Moderna",
+      "rating": 5,
+      "numberOfReviews": 156,
+      "rankingString": "#1 of 361 Restaurants in Alghero",
+      "priceRange": "$",
+      "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g187880-d32824860-Reviews-Licchita_Pizzeria_Moderna-Alghero_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-m/1280/2f/b1/ef/28/la-regina-delle-pizze.jpg",
+      "type": "RESTAURANT",
+      "subcategories": [
+        "Sit down"
+      ],
+      "reviewTags": [],
+      "matchedQuery": "dataset:pt47ywNmP7K2wSrJO"
+    },
+    "ok-pizza-evolution": {
+      "name": "Ok Pizza Evolution",
+      "rating": 4.6,
+      "numberOfReviews": 1257,
+      "rankingString": "#15 of 361 Restaurants in Alghero",
+      "priceRange": "$",
+      "webUrl": "https://www.tripadvisor.com/Restaurant_Review-g187880-d3612160-Reviews-Ok_Pizza_Evolution-Alghero_Province_of_Sassari_Sardinia.html",
+      "imageUrl": "https://media-cdn.tripadvisor.com/media/photo-m/1280/2f/40/ed/53/ingresso.jpg",
+      "type": "RESTAURANT",
+      "subcategories": [
+        "Sit down"
+      ],
+      "reviewTags": [
+        "pizza",
+        "old town",
+        "takeaway"
+      ],
+      "matchedQuery": "dataset:pt47ywNmP7K2wSrJO"
+    }
+  }
+}

@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { PlaceCardImage } from "@/components/place-card-image";
+import { getTripAdvisorInfo } from "@/lib/tripadvisor";
 import {
   familyMembers,
   initialVotes,
@@ -582,6 +583,26 @@ export function AlgheroApp({
                       </div>
                     </div>
                   ) : null}
+                  {(() => {
+                    const tripAdvisor = getTripAdvisorInfo(place.slug);
+                    if (!tripAdvisor?.rating) return null;
+                    return (
+                      <a
+                        href={tripAdvisor.webUrl ?? undefined}
+                        target={tripAdvisor.webUrl ? "_blank" : undefined}
+                        rel={tripAdvisor.webUrl ? "noreferrer" : undefined}
+                        className="inline-flex items-center gap-1.5 rounded-full bg-[var(--sand-150)] px-3 py-1.5 text-xs font-semibold text-[var(--ink-800)]"
+                      >
+                        <Star className="h-3.5 w-3.5 fill-[var(--coral-500)] text-[var(--coral-500)]" />
+                        {tripAdvisor.rating.toFixed(1)}
+                        {tripAdvisor.numberOfReviews ? (
+                          <span className="font-normal text-[var(--ink-600)]">
+                            ({tripAdvisor.numberOfReviews.toLocaleString("en-GB")} Tripadvisor reviews)
+                          </span>
+                        ) : null}
+                      </a>
+                    );
+                  })()}
                   <div className="text-xs text-[var(--ink-500)]">Source: {place.sourceLabel}</div>
                   <Link
                     href={`/places/${place.slug}`}
