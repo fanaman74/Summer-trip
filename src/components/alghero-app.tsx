@@ -116,7 +116,6 @@ export function AlgheroApp({
 }) {
   const [activeSection, setActiveSection] = useState("dashboard");
   const [weatherMode, setWeatherMode] = useState("calm");
-  const [selectedMember, setSelectedMember] = useState(familyMembers[0].id);
   const [selectedTag, setSelectedTag] = useState("All");
   const [search, setSearch] = useState("");
   const [votes, setVotes] = useState(initialVotes);
@@ -176,15 +175,15 @@ export function AlgheroApp({
     activeSection === "map" ||
     activeSection === "itinerary";
 
-  function updateVote(placeId: string, vote: VoteValue) {
+  function updateVote(placeId: string, userId: string, vote: VoteValue) {
     const existing = votes.find(
-      (item) => item.placeId === placeId && item.userId === selectedMember,
+      (item) => item.placeId === placeId && item.userId === userId,
     );
 
     if (existing) {
       setVotes((current) =>
         current.map((item) =>
-          item.placeId === placeId && item.userId === selectedMember
+          item.placeId === placeId && item.userId === userId
             ? { ...item, vote }
             : item,
         ),
@@ -192,7 +191,7 @@ export function AlgheroApp({
       return;
     }
 
-    setVotes((current) => [...current, { placeId, userId: selectedMember, vote }]);
+    setVotes((current) => [...current, { placeId, userId, vote }]);
   }
 
   return (
@@ -435,21 +434,16 @@ export function AlgheroApp({
                 Family members
               </div>
               <div className="mt-4 text-2xl font-semibold text-[var(--ink-900)]">
-                Vote as
+                Everyone votes on each card
               </div>
               <div className="mt-5 flex flex-wrap gap-3">
                 {familyMembers.map((member) => (
-                  <button
+                  <div
                     key={member.id}
-                    onClick={() => setSelectedMember(member.id)}
-                    className={`rounded-full border px-5 py-3 text-sm font-medium transition sm:text-base ${
-                      selectedMember === member.id
-                        ? "border-[var(--sea-700)] bg-[var(--sea-50)] text-[var(--sea-800)]"
-                        : "border-[var(--sand-300)] bg-white text-[var(--ink-800)]"
-                    }`}
+                    className="rounded-full border border-[var(--sand-300)] bg-white px-4 py-3 text-sm font-medium text-[var(--ink-800)]"
                   >
                     {member.emoji} {member.name}
-                  </button>
+                  </div>
                 ))}
               </div>
             </Card>
@@ -540,19 +534,42 @@ export function AlgheroApp({
                       <span className="font-semibold text-[var(--ink-900)]">Local tip:</span> {place.localTip}
                     </div>
                   ) : null}
-                  <div className="space-y-2">
-                    <div className="text-sm font-semibold">Vote quickly</div>
-                    <div className="flex flex-wrap gap-2">
-                      {(["must_do", "interested", "not_for_me"] as VoteValue[]).map((vote) => (
-                        <Button
-                          key={vote}
-                          size="sm"
-                          variant="secondary"
-                          onClick={() => updateVote(place.id, vote)}
-                        >
-                          {voteLabel(vote)}
-                        </Button>
-                      ))}
+                  <div className="space-y-3">
+                    <div className="text-sm font-semibold">Family voting</div>
+                    <div className="space-y-3">
+                      {familyMembers.map((member) => {
+                        const memberVote = placeVotes.find((vote) => vote.userId === member.id);
+
+                        return (
+                          <div
+                            key={member.id}
+                            className="rounded-[22px] border border-[var(--sand-250,var(--sand-200))] bg-[var(--sand-150)] p-3"
+                          >
+                            <div className="mb-2 text-sm font-semibold text-[var(--ink-900)]">
+                              {member.emoji} {member.name}
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                              {(["must_do", "interested", "not_for_me"] as VoteValue[]).map((vote) => {
+                                const isActive = memberVote?.vote === vote;
+
+                                return (
+                                  <button
+                                    key={vote}
+                                    onClick={() => updateVote(place.id, member.id, vote)}
+                                    className={`rounded-full px-3 py-2 text-xs font-semibold transition ${
+                                      isActive
+                                        ? "bg-[var(--sea-700)] text-white"
+                                        : "bg-white text-[var(--ink-800)] shadow-sm"
+                                    }`}
+                                  >
+                                    {voteLabel(vote)}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                   {placeVotes.length > 0 ? (
