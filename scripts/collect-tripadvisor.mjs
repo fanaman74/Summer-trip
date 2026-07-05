@@ -43,6 +43,10 @@ const attractionsOnly = process.argv.includes("--attractions-only");
 // only a handful of landmark places are still unmatched.
 const targetedOnly = process.argv.includes("--targeted-only");
 
+// --datasets-only skips both the broad and targeted live queries, matching
+// purely against previously cached datasets (zero Apify credits used).
+const datasetsOnly = process.argv.includes("--datasets-only");
+
 // Broad "Alghero"-style searches surface tour operators and small shops
 // before famous landmarks, so well-known places get their own narrow query.
 const targetedQueries = [
@@ -86,6 +90,14 @@ const nameHints = {
   "trattoria-caragol": ["Caragol"],
   "licchita-pizzeria-moderna": ["Licchita"],
   "gelateria-9-3-4": ["Gelateria Artigianale", "I Golosi"],
+  "piazza-civica": ["Piazza Civica"],
+  "torre-di-san-giovanni": ["Torre di San Giovanni"],
+  "museo-archeologico-alghero": ["Museo Archeologico"],
+  "parco-naturale-porto-conte": ["Parco Naturale Regionale Di Porto Conte", "Porto Conte"],
+  "azienda-agrituristica-sa-mandra": ["Sa Mandra"],
+  "alamo-cucina-di-mare": ["Alamo"],
+  "trattoria-da-mirko": ["Da Mirko"],
+  "ristorante-enhorabona": ["Enhorabona"],
 };
 
 function normalize(value) {
@@ -232,14 +244,16 @@ for (const datasetId of extraDatasetIds) {
   console.log(`Merged ${items.length} items from cached dataset ${datasetId}.`);
   allItems.push(...items.map((item) => ({ ...item, matchedQuery: `dataset:${datasetId}` })));
 }
-if (!targetedOnly) {
-  for (const searchQuery of searchQueries) {
-    if (attractionsOnly && searchQuery.includeRestaurants) continue;
+if (!datasetsOnly) {
+  if (!targetedOnly) {
+    for (const searchQuery of searchQueries) {
+      if (attractionsOnly && searchQuery.includeRestaurants) continue;
+      allItems.push(...(await runQuery(searchQuery)));
+    }
+  }
+  for (const searchQuery of targetedQueries) {
     allItems.push(...(await runQuery(searchQuery)));
   }
-}
-for (const searchQuery of targetedQueries) {
-  allItems.push(...(await runQuery(searchQuery)));
 }
 
 const { matched, unmatched } = matchPlaces(seedPlaces, allItems);
