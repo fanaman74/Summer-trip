@@ -16,6 +16,64 @@ export type PlaceMedia = {
   wikiPageUrl: string | null;
 };
 
+const placeMediaQueries: Record<
+  string,
+  {
+    commonsQuery?: string;
+    wikiTitle?: string;
+  }
+> = {
+  "le-bombarde": {
+    commonsQuery: "Spiaggia delle Bombarde Alghero",
+    wikiTitle: "Spiaggia delle Bombarde",
+  },
+  "mugoni-beach": {
+    commonsQuery: "Spiaggia di Mugoni Alghero",
+    wikiTitle: "Spiaggia di Mugoni",
+  },
+  "porto-ferro": {
+    commonsQuery: "Porto Ferro Sassari",
+  },
+  "nuraghe-palmavera": {
+    commonsQuery: "Nuraghe Palmavera Alghero",
+    wikiTitle: "Nuraghe Palmavera",
+  },
+  "alghero-old-town": {
+    commonsQuery: "Alghero old town bastioni",
+    wikiTitle: "Alghero",
+  },
+  "bastioni-sunset-walk": {
+    commonsQuery: "Bastioni Alghero",
+    wikiTitle: "Alghero",
+  },
+  "spiaggia-di-maria-pia": {
+    commonsQuery: "Maria Pia Alghero beach",
+  },
+  "lido-di-alghero": {
+    commonsQuery: "Lido di San Giovanni Alghero",
+  },
+  "capo-caccia-belvedere": {
+    commonsQuery: "Capo Caccia Alghero",
+    wikiTitle: "Capo Caccia",
+  },
+  "neptunes-grotto": {
+    commonsQuery: "Grotta di Nettuno Capo Caccia",
+    wikiTitle: "Neptune's Grotto",
+  },
+  "la-pelosa": {
+    commonsQuery: "La Pelosa Stintino",
+    wikiTitle: "La Pelosa",
+  },
+  "stintino-boat-excursion": {
+    commonsQuery: "Stintino Asinara boat",
+    wikiTitle: "Stintino",
+  },
+  bosa: {
+    commonsQuery: "Bosa Sardinia",
+    wikiTitle: "Bosa",
+  },
+};
+
 function pickPlace(slug: string) {
   return places.find((place) => place.slug === slug);
 }
@@ -43,8 +101,9 @@ async function fetchJson<T>(url: string) {
 
 export async function getPlaceMedia(slug: string): Promise<PlaceMedia> {
   const place = pickPlace(slug);
+  const mediaConfig = placeMediaQueries[slug];
 
-  if (!place || place.latitude === undefined || place.longitude === undefined) {
+  if (!place) {
     return {
       heroImageUrl: null,
       gallery: [],
@@ -54,32 +113,34 @@ export async function getPlaceMedia(slug: string): Promise<PlaceMedia> {
     };
   }
 
-  const geoUrl =
-    `https://en.wikipedia.org/w/api.php?action=query&format=json&generator=geosearch` +
-    `&ggscoord=${place.latitude}|${place.longitude}&ggsradius=10000&ggslimit=8` +
-    `&prop=coordinates|pageimages&piprop=original|thumbnail&pithumbsize=1600&origin=*`;
+  const commonsQuery =
+    mediaConfig?.commonsQuery ?? `${place.title} ${place.area} Alghero Sardinia`;
 
-  const geoData = await fetchJson<{
+  const commonsUrl =
+    `https://commons.wikimedia.org/w/api.php?action=query&format=json&generator=search` +
+    `&gsrsearch=${encodeURIComponent(commonsQuery)}` +
+    `&gsrnamespace=6&gsrlimit=8&prop=imageinfo&iiprop=url&iiurlwidth=1600&origin=*`;
+
+  const commonsData = await fetchJson<{
     query?: {
       pages?: Record<
         string,
         {
           title: string;
-          original?: { source: string };
-          thumbnail?: { source: string };
+          imageinfo?: Array<{ url?: string; thumburl?: string }>;
         }
       >;
     };
-  }>(geoUrl);
+  }>(commonsUrl);
 
-  const pages = Object.values(geoData?.query?.pages ?? {})
+  const pages = Object.values(commonsData?.query?.pages ?? {})
     .map((page) => ({
-      title: page.title,
-      imageUrl: page.original?.source ?? page.thumbnail?.source ?? "",
-      pageUrl: `https://en.wikipedia.org/wiki/${encodeURIComponent(page.title.replaceAll(" ", "_"))}`,
-      score: titleScore(place.title, page.title),
+      title: page.title.replace(/^File:/, ""),
+      imageUrl: page.imageinfo?.[0]?.url ?? page.imageinfo?.[0]?.thumburl ?? "",
+      pageUrl: `https://commons.wikimedia.org/wiki/${encodeURIComponent(page.title.replaceAll(" ", "_"))}`,
+      score: titleScore(place.title, page.title) + titleScore(commonsQuery, page.title),
     }))
-    .filter((page) => page.imageUrl);
+    .filter((page) => page.imageUrl && page.score >= 2);
 
   const sortedPages = [...pages].sort((a, b) => b.score - a.score);
   const bestPage = sortedPages[0];
@@ -87,8 +148,8 @@ export async function getPlaceMedia(slug: string): Promise<PlaceMedia> {
   let wikiSummary: string | null = null;
   let wikiPageUrl: string | null = bestPage?.pageUrl ?? null;
 
-  if (bestPage) {
-    const summaryUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(bestPage.title)}`;
+  if (mediaConfig?.wikiTitle) {
+    const summaryUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(mediaConfig.wikiTitle)}`;
     const summaryData = await fetchJson<{
       extract?: string;
       content_urls?: { desktop?: { page?: string } };
